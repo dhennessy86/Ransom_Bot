@@ -53,10 +53,10 @@ No_BTC = re.sub(r"[^0-9.]", "", strip)  # strip out BTC value
 
 page1 = requests.get('http://api.coindesk.com/v1/bpi/currentprice/EUR.json')  # get request to get latest BTC rates in euro
 contents = page1.text													
-rates = re.findall(r"EUR\",\"rate\":\".*\",\"d", contents )					   # strip out in euro line
-rates1 = (", ".join(rates))													   # convert to string
-euro_rate = re.findall(r"[0-9]{1,},[0-9]{1,}", rates1 )						   # strip out euro value
-euro_rate1 = (", ".join(euro_rate))											   # convert to string
+rates = re.findall(r"EUR\",\"rate\":\".*\",\"d", contents )	 # strip out in euro line
+rates1 = (", ".join(rates))					 # convert to string
+euro_rate = re.findall(r"[0-9]{1,},[0-9]{1,}", rates1 )		 # strip out euro value
+euro_rate1 = (", ".join(euro_rate))				 # convert to string
 euro_rate2 = re.sub(r"[^0-9]", "", euro_rate1)
 Total_Value = float(euro_rate2) * float(No_BTC)
 Round_Euro = int(round(Total_Value))
